@@ -1,0 +1,79 @@
+###################################################################
+bugid:		6
+----------------BUG INFO-----------------
+findtime:	2012-10-17
+version:	mc_bloom_filter-v0.2alpha2
+who found:	heyue
+who's bug:	huhong
+description:	calculate 计算溢出 unsigned long long
+----------------DEAL INFO----------------
+dealtime:	2012-10-19
+status:		已修复
+deal info:	修改添加溢出判断
+
+###################################################################
+bugid:		5
+----------------BUG INFO-----------------
+findtime:	2012-10-17
+version:	mc_bloom_filter-v0.2alpha2
+who found:	heyue
+who's bug:	heyue
+description:	subkey 长度为“0和空格”的时候的控制，如果为0，协议栈会乱掉，从php的客户端看，只判断了STORED 、NOT STORED
+----------------DEAL INFO----------------
+dealtime:	2012-10-17
+status:		已修复
+deal info:	在complete 里面判断了subkey的空格和长度为0
+
+###################################################################
+bugid:		4
+----------------BUG INFO-----------------
+findtime:	2012-10-17
+version:	mc_bloom_filter-v0.2alpha2
+who found:	heyue
+who's bug:	heyue
+description:	subkey 的长度没有限制，set的时候应该限制成216 否则，get的时候出不来
+----------------DEAL INFO----------------
+dealtime:	2012-10-17
+status:		已修复
+deal info:	控制complete_nread里面的MAX_SUBKEY_LEN
+
+###################################################################
+bugid:		3
+----------------BUG INFO-----------------
+findtime:	2012-10-17
+version:	mc_bloom_filter-v0.2alpha2
+who found:	heyue
+who's bug:	heyue
+description:	add ||| 0 0 10 不能添加key中有|线的名字，否者没法取到
+----------------DEAL INFO----------------
+dealtime:	2012-10-17
+status:		已修复
+deal info:	在add逻辑中process_command中strpos | 的存在
+
+###################################################################
+bugid:		2
+----------------BUG INFO-----------------
+findtime:	2012-10-16
+version:	mc_bloom_filter-v0.2alpha2
+who found:	heyue
+who's bug:	heyue
+description:	网络层总的长度m 的传入的时候，没有判断负值，导致数字越界。比如 "add a 0 0 4  -1|1"的时候，创建错误，这个值应该只能大于0  小于 1
+----------------DEAL INFO----------------
+dealtime:	2012-10-17
+status:		已修复
+deal info:	控制等于0的时候和负值
+
+###################################################################
+bugid:		1
+----------------BUG INFO-----------------
+findtime:	2012-10-16
+version:	mc_bloom_filter-v0.2alpha2
+who found:	heyue
+who's bug:	heyue
+description:	网络层错误率e传入负值和0的时候，出现死循环，应该在前面判断下，e的值只能在 0、1之间
+----------------DEAL INFO----------------
+dealtime:	2012-10-17
+status:		已修复
+deal info:	判断了 0 < e < 1
+
+###################################################################
